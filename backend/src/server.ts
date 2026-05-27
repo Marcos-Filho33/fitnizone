@@ -20,6 +20,8 @@ import { ensureSystemData } from './lib/bootstrap';
 const app = express();
 const allowedOrigins = new Set([
   env.frontendUrl,
+  'https://marcos-filho33.github.io',
+  'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:3002'
 ]);
@@ -29,7 +31,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin || allowedOrigins.has(origin)) {
-        callback(null, true);
+        callback(null, origin || env.frontendUrl || 'https://marcos-filho33.github.io');
         return;
       }
 

@@ -31,17 +31,29 @@ const resetSchema = z.object({
   password: z.string().min(6)
 });
 
-const cookieOptions = {
+const isProduction = env.nodeEnv === 'production';
+
+const cookieOptions: {
+  httpOnly: boolean;
+  secure: boolean;
+  sameSite: 'none' | 'lax';
+  path: string;
+} = {
   httpOnly: true,
-  secure: env.nodeEnv === 'production',
-  sameSite: 'lax' as const,
+  secure: isProduction,
+  sameSite: isProduction ? 'none' : 'lax',
   path: '/'
 };
 
-const csrfCookieOptions = {
+const csrfCookieOptions: {
+  httpOnly: boolean;
+  secure: boolean;
+  sameSite: 'none' | 'lax';
+  path: string;
+} = {
   httpOnly: false,
-  secure: env.nodeEnv === 'production',
-  sameSite: 'lax' as const,
+  secure: isProduction,
+  sameSite: isProduction ? 'none' : 'lax',
   path: '/'
 };
 

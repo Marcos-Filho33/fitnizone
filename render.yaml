@@ -8,6 +8,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: FRONTEND_URL
+        value: https://marcos-filho33.github.io
       - key: DATABASE_URL
         sync: false
       - key: JWT_SECRET
