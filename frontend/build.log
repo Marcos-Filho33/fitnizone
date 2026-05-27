@@ -1,0 +1,40 @@
+
+> fitzone-frontend@1.0.0 build
+> next build
+
+   ▲ Next.js 15.0.3
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/14) ...
+   Generating static pages (3/14) 
+   Generating static pages (6/14) 
+   Generating static pages (10/14) 
+ ✓ Generating static pages (14/14)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    175 B           110 kB
+├ ○ /_not-found                          901 B           101 kB
+├ ○ /admin                               4.72 kB         150 kB
+├ ○ /dashboard                           5.07 kB         251 kB
+├ ○ /diets                               1.84 kB         151 kB
+├ ○ /foods                               5.01 kB         150 kB
+├ ○ /login                               3.24 kB         171 kB
+├ ○ /profile                             4.37 kB         149 kB
+├ ○ /progress                            4.04 kB         250 kB
+├ ○ /register                            3.1 kB          171 kB
+├ ○ /trainer                             4.48 kB         150 kB
+└ ○ /workouts                            2.1 kB          151 kB
++ First Load JS shared by all            100 kB
+  ├ chunks/239-ee5915ca85cf97e8.js       45.8 kB
+  ├ chunks/c7879cf7-47ecdb92bffdeaa6.js  52.5 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+○  (Static)  prerendered as static content
+

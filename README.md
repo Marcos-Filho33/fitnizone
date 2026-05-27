@@ -48,11 +48,14 @@ O backend garante esse acesso automaticamente ao iniciar e tambem atualiza o cat
 
 ## Deploy
 
-- Frontend: Vercel
+- Frontend: GitHub Pages (exportação estática)
 - Backend: Railway ou Render
 - Banco: PostgreSQL gerenciado
 
-Use os arquivos `Dockerfile`, `render.yaml` e `vercel.json` para deploy.
+Para GitHub Pages, o frontend agora gera uma build estática em `frontend/out/`.
+Use o workflow em `.github/workflows/deploy-pages.yml` para publicar automaticamente.
+
+Configure o backend em `NEXT_PUBLIC_API_URL` antes do deploy do frontend.
 
 ## API
 

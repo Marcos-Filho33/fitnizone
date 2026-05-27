@@ -1,0 +1,83 @@
+
+> fitzone-frontend@1.0.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3002
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ ○ Compiling /workouts ...
+ ✓ Compiled /workouts in 11.3s (884 modules)
+ GET /workouts 200 in 11975ms
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../typescript/lib/typescript' in c:\Users\Pichau\git\sites venda\node_modules\next\dist\build for build dependencies doesn't lead to expected result 'C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js', but to 'c:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../typescript/lib/typescript (expected C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js)
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack-config.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack-config.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\handle-externals.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\handle-externals.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at resolve commonjs c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../typescript/lib/typescript' in c:\Users\Pichau\git\sites venda\node_modules\next\dist\build for build dependencies doesn't lead to expected result 'C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js', but to 'c:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../typescript/lib/typescript (expected C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js)
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at resolve commonjs c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+ ○ Compiling /login ...
+ ✓ Compiled /login in 3.9s (917 modules)
+ GET /login 200 in 3977ms
+ GET /login 200 in 19ms
+ GET /workouts 200 in 140ms
+ GET /login 200 in 14ms
+ GET /login?reason=session-expired 200 in 77ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 3.9s (1943 modules)
+ GET /dashboard 200 in 4356ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /login 200 in 456ms
+ ✓ Compiled /workouts in 209ms (1035 modules)
+ GET /workouts 200 in 322ms
+ GET /dashboard 200 in 18ms
+ GET /workouts 200 in 15ms
+ ○ Compiling / ...
+ ✓ Compiled / in 676ms (1991 modules)
+ GET / 200 in 900ms
+ GET / 200 in 37ms
+ ✓ Compiled /register in 427ms (1984 modules)
+ GET /register 200 in 491ms
+ GET /dashboard 200 in 16ms
+ GET /login 200 in 36ms
+ GET /login 200 in 16ms
+ GET /dashboard 200 in 9ms
+ GET /workouts 200 in 18ms
+ ○ Compiling /exercises ...
+ ✓ Compiled /exercises in 943ms (2009 modules)
+ GET /exercises 200 in 1014ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 6s (2021 modules)
+ GET /exercises 404 in 7140ms
+ GET / 200 in 129ms
+ GET / 200 in 121ms
+ GET / 200 in 45ms
+ GET /login?reason=session-expired 200 in 262ms
+ GET /dashboard 200 in 36ms
+ GET /exercises 200 in 23ms
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 761ms (2025 modules)
+ GET /admin 200 in 828ms
+ GET / 200 in 165ms
+ GET /admin 200 in 70ms
+ GET / 200 in 81ms
+^C

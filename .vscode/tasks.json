@@ -1,0 +1,517 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Verify build after schema fixes",
+			"type": "shell",
+			"command": "cd /d c:/Users/Pichau/git/sites venda && npm run build --workspace frontend && npm run build --workspace backend",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Rebuild after adding _document",
+			"type": "shell",
+			"command": "cd /d c:/Users/Pichau/git/sites venda && npm run build --workspace frontend && npm run build --workspace backend",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Rebuild after route type fixes",
+			"type": "shell",
+			"command": "cd /d c:/Users/Pichau/git/sites venda && npm run build --workspace frontend && npm run build --workspace backend",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify postgres availability",
+			"type": "shell",
+			"command": "node -e \"const net=require('net'); const socket=net.connect(5432,'localhost'); socket.on('connect',()=>{console.log('POSTGRES_OK'); socket.end();}); socket.on('error',(err)=>{console.log('POSTGRES_FAIL'); console.log(err.code); process.exitCode=1;});\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check local DB tooling",
+			"type": "shell",
+			"command": "docker --version || true\npsql --version || true",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Verify docker availability",
+			"type": "shell",
+			"command": "where docker",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Rebuild frontend and backend",
+			"type": "shell",
+			"command": "npm run build --workspace frontend && npm run build --workspace backend",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check psql client",
+			"type": "shell",
+			"command": "where.exe psql || echo NO_PSQL\npsql --version || echo NO_PSQL_VERSION",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check postgres binaries",
+			"type": "shell",
+			"command": "where.exe pg_ctl || echo NO_PG_CTL\nwhere.exe postgres || echo NO_POSTGRES\nwhere.exe initdb || echo NO_INITDB\nwhere.exe pg_isready || echo NO_PG_ISREADY",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check winget availability",
+			"type": "shell",
+			"command": "winget --version || echo NO_WINGET",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Search postgres winget package",
+			"type": "shell",
+			"command": "winget search PostgreSQL --source winget",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Install PostgreSQL via winget",
+			"type": "shell",
+			"command": "winget install --id PostgreSQL.PostgreSQL.17 --accept-package-agreements --accept-source-agreements --silent",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check postgres install result",
+			"type": "shell",
+			"command": "where.exe pg_ctl || echo NO_PG_CTL\nwhere.exe postgres || echo NO_POSTGRES\nwhere.exe initdb || echo NO_INITDB\nwhere.exe pg_isready || echo NO_PG_ISREADY",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Inspect postgres install directory",
+			"type": "shell",
+			"command": "if exist \"C:\\Program Files\\PostgreSQL\\17\\bin\\pg_ctl.exe\" (echo FOUND) else (echo NOT_FOUND)\nif exist \"C:\\Program Files\\PostgreSQL\\17\\bin\\postgres.exe\" (echo FOUND_POSTGRES) else (echo NOT_FOUND_POSTGRES)",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Locate PostgreSQL data directory",
+			"type": "shell",
+			"command": "if exist \"C:\\Program Files\\PostgreSQL\\17\\data\" (echo DATA_FOUND) else (echo DATA_MISSING)\nif exist \"C:\\Program Files\\PostgreSQL\\17\\data\\postgresql.conf\" (echo CONF_FOUND) else (echo CONF_MISSING)\nif exist \"C:\\Program Files\\PostgreSQL\\17\\bin\\postgres.exe\" (echo POSTGRES_FOUND) else (echo POSTGRES_MISSING)",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "List postgresql install contents",
+			"type": "shell",
+			"command": "dir \"C:\\Program Files\\PostgreSQL\\17\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check PostgreSQL service status",
+			"type": "shell",
+			"command": "sc query postgresql-x64-17 || echo SERVICE_NOT_FOUND\nsc query \"postgresql-x64-17\" || echo SERVICE_NOT_FOUND",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Initialize PostgreSQL data directory",
+			"type": "shell",
+			"command": "C:\\Program Files\\PostgreSQL\\17\\bin\\initdb.exe -D C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgdata --username=postgres --auth-local=scram-sha-256 --auth-host=scram-sha-256 --pwfile=C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgpass",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Initialize PostgreSQL data directory",
+			"type": "shell",
+			"command": "echo postgres > C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgpass && \"C:\\Program Files\\PostgreSQL\\17\\bin\\initdb.exe\" -D C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgdata --username=postgres --auth-local=scram-sha-256 --auth-host=scram-sha-256 --pwfile=C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgpass",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Initialize PostgreSQL with PowerShell",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$pw = 'postgres'; Set-Content -Path 'C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgpass' -Value $pw; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\initdb.exe' -D 'C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgdata' --username=postgres --auth-local=scram-sha-256 --auth-host=scram-sha-256 --pwfile='C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgpass'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Search for utf8_and_win library file",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Program Files\\PostgreSQL\\17' -Recurse -Filter 'utf8_and_win*' | Select-Object -ExpandProperty FullName\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "List postgres lib directory",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Program Files\\PostgreSQL\\17\\lib' | Select-Object Name\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Inspect PostgreSQL directories",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Program Files\\PostgreSQL\\17' | Format-Table Name,Mode,Length\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Inspect bin directory",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Program Files\\PostgreSQL\\17\\bin' | Select-Object -First 30 Name\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Inspect share directory",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Program Files\\PostgreSQL\\17\\share' | Select-Object -First 50 Name\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Search for postgres executable",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Program Files\\PostgreSQL\\17\\bin' -Filter 'postgres*.exe' | Select-Object Name\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check pg_config presence",
+			"type": "shell",
+			"command": "if exist \"C:\\Program Files\\PostgreSQL\\17\\bin\\pg_config.exe\" (echo FOUND_PG_CONFIG) else (echo NO_PG_CONFIG)",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Query pg_config paths",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"& 'C:\\Program Files\\PostgreSQL\\17\\bin\\pg_config.exe' --pkglibdir; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\pg_config.exe' --sharedir\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check short lib path existence",
+			"type": "shell",
+			"command": "if exist \"C:\\PROGRA~1\\POSTGR~1\\17\\lib\" (echo LIB_SHORT_FOUND) else (echo LIB_SHORT_MISSING)\nif exist \"C:\\Program Files\\PostgreSQL\\17\\lib\" (echo LIB_LONG_FOUND) else (echo LIB_LONG_MISSING)",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Search lib for utf8_and_win",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\PROGRA~1\\POSTGR~1\\17\\lib' -Filter '*utf8*' | Select-Object Name\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Retry initdb with PATH",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PATH = 'C:\\Program Files\\PostgreSQL\\17\\bin;' + $env:PATH; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\initdb.exe' -D 'C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgdata' --username=postgres --auth-local=scram-sha-256 --auth-host=scram-sha-256 --pwfile='C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgpass'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Start local PostgreSQL server",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PATH = 'C:\\Program Files\\PostgreSQL\\17\\bin;' + $env:PATH; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\pg_ctl.exe' -D 'C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgdata' -l 'C:\\Users\\Pichau\\git\\sites venda\\backend\\.pgdata\\server.log' start\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check port 5432 usage",
+			"type": "shell",
+			"command": "netstat -ano | findstr :5432",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Identify process using port 5432",
+			"type": "shell",
+			"command": "tasklist /FI \"PID eq 16808\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Confirm psql executable",
+			"type": "shell",
+			"command": "if exist \"C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe\" (echo FOUND_PSQL) else (echo NO_PSQL)",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Test PostgreSQL login and database existence",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe' -U postgres -h localhost -p 5432 -d postgres -tAc \"SELECT 1\"\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Test PostgreSQL authentication",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe' -U postgres -h localhost -p 5432 -d postgres -c 'SELECT 1'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check fitzone database existence",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe' -U postgres -h localhost -p 5432 -d postgres -tAc \"SELECT 1 FROM pg_database WHERE datname = 'fitzone'\"\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check fitzone database existence",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe' -U postgres -h localhost -p 5432 -d postgres -tAc 'SELECT 1 FROM pg_database WHERE datname = ''fitzone'''\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Create fitzone database if missing",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\createdb.exe' -h localhost -U postgres fitzone\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Verify fitzone database connectivity",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe' -U postgres -h localhost -p 5432 -d fitzone -c 'SELECT 1'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Apply Prisma migrations",
+			"type": "shell",
+			"command": "npm run prisma:generate --workspace backend && npm run prisma:migrate --workspace backend",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Clean Prisma temp artifacts",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client' -Filter '*.tmp*' | Remove-Item -Force -ErrorAction SilentlyContinue; Get-ChildItem -Path 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client' | Select-Object Name\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Apply Prisma migrations",
+			"type": "shell",
+			"command": "npm run prisma:generate --workspace backend && npm run prisma:migrate --workspace backend",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Reset Prisma client binary",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Remove-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\query_engine-windows.dll.node' -ErrorAction SilentlyContinue; Remove-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\*.tmp*' -ErrorAction SilentlyContinue; npm run prisma:generate --workspace backend\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Reset Prisma client and regenerate",
+			"type": "shell",
+			"command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"Remove-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\query_engine-windows.dll.node' -ErrorAction SilentlyContinue; Remove-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\*.tmp*' -ErrorAction SilentlyContinue; npm run prisma:generate --workspace backend\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Check node processes",
+			"type": "shell",
+			"command": "tasklist | findstr /i \"node.exe prisma\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Inspect node process command lines",
+			"type": "shell",
+			"command": "wmic process where processid=25892 get Name,CommandLine && wmic process where processid=16052 get Name,CommandLine && wmic process where processid=15960 get Name,CommandLine",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Locate Prisma query engine sources",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-ChildItem -Path 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\@prisma\\engines' -Filter 'query_engine*' | Select-Object Name,FullName\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Copy Prisma engine into client folder",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Copy-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\@prisma\\engines\\query_engine-windows.dll.node' 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\query_engine-windows.dll.node'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Identify node processes for backend and frontend",
+			"type": "shell",
+			"command": "for %p in (6736 24772 28012 23440 24332 15960 25892 16052) do @wmic process where processid=%p get Name,CommandLine",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Stop backend dev server",
+			"type": "shell",
+			"command": "taskkill /F /PID 15960 /PID 24332 /PID 6736",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Copy Prisma engine after stopping backend",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Copy-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\@prisma\\engines\\query_engine-windows.dll.node' 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\query_engine-windows.dll.node'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Run Prisma migrate deploy",
+			"type": "shell",
+			"command": "npm run prisma:migrate --workspace backend",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Inspect fitzone tables",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe' -U postgres -h localhost -p 5432 -d fitzone -c '\\dt'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Push Prisma schema to database",
+			"type": "shell",
+			"command": "npx prisma db push --schema backend/prisma/schema.prisma",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Push Prisma schema with env file",
+			"type": "shell",
+			"command": "npx prisma db push --schema backend/prisma/schema.prisma --env-file backend/.env",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Push Prisma schema with explicit env",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/fitzone?schema=public'; npx prisma db push --schema backend/prisma/schema.prisma\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Push Prisma schema with explicit env",
+			"type": "shell",
+			"command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/fitzone?schema=public'; npx.cmd prisma db push --schema backend/prisma/schema.prisma\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Push Prisma schema with cmd env",
+			"type": "shell",
+			"command": "cmd /d /c \"set DATABASE_URL=postgresql://postgres:postgres@localhost:5432/fitzone?schema=public && npx prisma db push --schema backend/prisma/schema.prisma\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Verify Prisma tables created",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"$env:PGPASSWORD='postgres'; & 'C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe' -U postgres -h localhost -p 5432 -d fitzone -c '\\dt'\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Inspect frontend dev process",
+			"type": "shell",
+			"command": "tasklist | findstr /i \"next.exe npm.exe\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "List node command lines",
+			"type": "shell",
+			"command": "wmic process where \"name='node.exe'\" get processid,commandline",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		},
+		{
+			"label": "Restart frontend dev server",
+			"type": "shell",
+			"command": "taskkill /F /PID 28012 /PID 23440 /PID 25892 || true",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "verify"
+		}
+	]
+}

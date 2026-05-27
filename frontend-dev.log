@@ -1,0 +1,50 @@
+
+> fitzone-frontend@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ○ Compiling /workouts ...
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../typescript/lib/typescript' in c:\Users\Pichau\git\sites venda\node_modules\next\dist\build for build dependencies doesn't lead to expected result 'C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js', but to 'c:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../typescript/lib/typescript (expected C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js)
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at resolve commonjs c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../typescript/lib/typescript' in c:\Users\Pichau\git\sites venda\node_modules\next\dist\build for build dependencies doesn't lead to expected result 'C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js', but to 'c:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../typescript/lib/typescript (expected C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js)
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\analysis\parse-module.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\analysis\parse-module.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\analysis\get-page-static-info.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\analysis\get-page-static-info.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-flight-loader\index.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-flight-loader\index.js
+<w>  at resolve commonjs c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-flight-loader\index.js
+ ✓ Compiled /workouts in 11.9s (887 modules)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../typescript/lib/typescript' in c:\Users\Pichau\git\sites venda\node_modules\next\dist\build for build dependencies doesn't lead to expected result 'C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js', but to 'c:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../typescript/lib/typescript (expected C:\Users\Pichau\git\sites venda\node_modules\typescript\lib\typescript.js)
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\load-jsconfig.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\server\dev\turbopack-utils.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\swc\index.js
+<w>  at file dependencies c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at file c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at resolve commonjs c:\Users\Pichau\git\sites venda\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+ GET /workouts 200 in 845ms

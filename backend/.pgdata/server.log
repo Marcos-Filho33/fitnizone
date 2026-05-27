@@ -1,0 +1,6 @@
+2026-05-24 15:21:11.599 -03 [5380] LOG:  iniciando PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit
+2026-05-24 15:21:11.604 -03 [5380] LOG:  não foi possível vincular o endereço IPv6 "::1": Permission denied
+2026-05-24 15:21:11.604 -03 [5380] LOG:  não foi possível vincular o endereço IPv4 "127.0.0.1": Permission denied
+2026-05-24 15:21:11.604 -03 [5380] AVISO:  não foi possível criar soquete de escuta para "localhost"
+2026-05-24 15:21:11.604 -03 [5380] FATAL:  não foi possível criar nenhum soquete TCP/IP
+2026-05-24 15:21:11.606 -03 [5380] LOG:  sistema de banco de dados está desligado

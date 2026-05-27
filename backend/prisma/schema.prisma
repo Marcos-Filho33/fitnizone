@@ -1,0 +1,202 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TRAINER
+  ADMIN
+}
+
+enum MuscleGroup {
+  PEITO
+  COSTAS
+  PERNAS
+  OMBROS
+  BICEPS
+  TRICEPS
+  ABDOMEN
+}
+
+enum Difficulty {
+  INICIANTE
+  INTERMEDIARIO
+  AVANCADO
+}
+
+enum MealTime {
+  CAFE
+  ALMOCO
+  JANTA
+  LANCHE
+  PRE_TREINO
+  POS_TREINO
+}
+
+model User {
+  id                    String               @id @default(cuid())
+  name                  String
+  email                 String               @unique
+  password              String
+  role                  Role                 @default(STUDENT)
+  age                   Int?
+  weight                Float?
+  height                Float?
+  goal                  String?
+  bio                   String?
+  avatarUrl             String?
+  isActive              Boolean              @default(true)
+  resetTokenHash        String?
+  resetTokenExpiresAt   DateTime?
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+
+  workouts              Workout[]
+  diets                 Diet[]
+  progress              Progress[]
+  bodyMeasurements      BodyMeasurement[]
+  notifications         Notification[]
+  trainerRelationships  TrainerRelationship[] @relation("Trainer")
+  studentRelationships  TrainerRelationship[] @relation("Student")
+}
+
+model TrainerRelationship {
+  id         String   @id @default(cuid())
+  trainerId  String
+  studentId  String
+  createdAt  DateTime @default(now())
+
+  trainer    User @relation("Trainer", fields: [trainerId], references: [id])
+  student    User @relation("Student", fields: [studentId], references: [id])
+}
+
+model Exercise {
+  id            String          @id @default(cuid())
+  name          String
+  description   String
+  muscleGroup   MuscleGroup
+  difficulty    Difficulty
+  instructions  String?
+  imageUrl      String?
+  videoUrl      String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  workoutExercises WorkoutExercise[]
+}
+
+model Workout {
+  id            String             @id @default(cuid())
+  ownerId       String
+  title         String
+  goal          String
+  duration      Int
+  category      String
+  difficulty    Difficulty
+  favorite      Boolean            @default(false)
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  owner         User               @relation(fields: [ownerId], references: [id])
+  workoutExercises WorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id            String   @id @default(cuid())
+  workoutId     String
+  exerciseId    String
+  sets          Int
+  reps          String
+  restSeconds   Int
+  notes         String?
+
+  workout       Workout  @relation(fields: [workoutId], references: [id])
+  exercise      Exercise @relation(fields: [exerciseId], references: [id])
+}
+
+model Diet {
+  id         String   @id @default(cuid())
+  ownerId    String
+  title      String
+  date       DateTime
+  notes      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  owner      User     @relation(fields: [ownerId], references: [id])
+  meals      Meal[]
+}
+
+model Food {
+  id                String   @id @default(cuid())
+  name              String
+  caloriesPer100g   Float
+  proteinPer100g    Float
+  carbsPer100g      Float
+  fatPer100g        Float
+  category          String?
+  source            String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  meals             Meal[]
+}
+
+model Meal {
+  id         String   @id @default(cuid())
+  dietId     String
+  foodId     String
+  name       String
+  timeOfDay  MealTime
+  grams      Float
+  calories   Float
+  protein    Float
+  carbs      Float
+  fat        Float
+
+  diet       Diet @relation(fields: [dietId], references: [id])
+  food       Food @relation(fields: [foodId], references: [id])
+}
+
+model Progress {
+  id        String   @id @default(cuid())
+  userId    String
+  date      DateTime
+  weight    Float
+  bodyFat   Float
+  notes     String
+
+  user      User @relation(fields: [userId], references: [id])
+}
+
+model BodyMeasurement {
+  id        String   @id @default(cuid())
+  userId    String
+  date      DateTime
+  weight    Float
+  chest     Float
+  waist     Float
+  hips      Float
+  neck      Float
+  arm       Float
+  thigh     Float
+  notes     String
+
+  user      User @relation(fields: [userId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User @relation(fields: [userId], references: [id])
+}
