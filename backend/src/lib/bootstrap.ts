@@ -48,16 +48,20 @@ export async function ensureSystemData() {
         name: defaultAdminAccount.name,
         email: env.systemAdminEmail,
         password,
-        role: 'ADMIN'
+        role: 'ADMIN',
+        isActive: true
       }
     });
   } else {
+    const passwordMatches = await bcrypt.compare(env.systemAdminPassword, existingAdmin.password);
+    
     await prisma.user.update({
       where: { id: existingAdmin.id },
       data: {
         name: defaultAdminAccount.name,
         role: 'ADMIN',
-        isActive: true
+        isActive: true,
+        ...(passwordMatches ? {} : { password: await bcrypt.hash(env.systemAdminPassword, env.bcryptRounds) })
       }
     });
   }

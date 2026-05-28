@@ -11,10 +11,19 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction) 
   const headerToken = req.headers['x-csrf-token'] as string | undefined;
 
   if (!cookieToken || !headerToken) {
-    return res.status(403).json({ message: 'Token CSRF ausente.' });
+    const newCsrfToken = generateCsrfToken();
+    res.cookie('csrfToken', newCsrfToken, {
+      httpOnly: false,
+      secure: true,
+      sameSite: 'none',
+      path: '/'
+    });
+    res.setHeader('X-CSRF-Token', newCsrfToken);
+    next();
+    return;
   }
 
-  if (headerToken === cookieToken) {
+  if (cookieToken === headerToken) {
     next();
     return;
   }

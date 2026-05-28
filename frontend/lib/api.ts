@@ -50,7 +50,13 @@ function redirectToLogin(message: string) {
 }
 
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    const newCsrfToken = response.headers['x-csrf-token'];
+    if (newCsrfToken && typeof document !== 'undefined') {
+      document.cookie = `csrfToken=${newCsrfToken}; path=/; Secure; SameSite=None`;
+    }
+    return response;
+  },
   async (error) => {
     const originalRequest = error.config;
 

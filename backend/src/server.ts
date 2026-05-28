@@ -4,8 +4,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
-import path from 'path';
-import fs from 'fs';
+import path from 'node:path';
+import fs from 'node:fs';
 import authRouter from './routes/auth';
 import usersRouter from './routes/users';
 import workoutsRouter from './routes/workouts';
@@ -23,7 +23,9 @@ const allowedOrigins = new Set([
   'https://marcos-filho33.github.io',
   'http://localhost:3000',
   'http://localhost:3001',
-  'http://localhost:3002'
+  'http://localhost:3002',
+  'https://fitnizone.vercel.app',
+  'http://localhost:4000'
 ]);
 
 app.use(helmet());

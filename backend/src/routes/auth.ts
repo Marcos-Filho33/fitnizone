@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 import { env } from '../lib/env';
@@ -40,8 +40,8 @@ const cookieOptions: {
   path: string;
 } = {
   httpOnly: true,
-  secure: isProduction,
-  sameSite: isProduction ? 'none' : 'lax',
+  secure: true,
+  sameSite: 'none',
   path: '/'
 };
 
@@ -52,8 +52,8 @@ const csrfCookieOptions: {
   path: string;
 } = {
   httpOnly: false,
-  secure: isProduction,
-  sameSite: isProduction ? 'none' : 'lax',
+  secure: true,
+  sameSite: 'none',
   path: '/'
 };
 
@@ -86,7 +86,7 @@ authRouter.get('/csrf', (_req, res) => {
   res.json({ csrfToken });
 });
 
-authRouter.post('/register', async (req, res) => {
+authRouter.post('/register', csrfProtection, async (req, res) => {
   try {
     const data = registerSchema.parse(req.body);
     const existing = await prisma.user.findUnique({ where: { email: data.email } });
@@ -125,12 +125,12 @@ authRouter.post('/register', async (req, res) => {
   }
 });
 
-authRouter.post('/login', async (req, res) => {
+authRouter.post('/login', csrfProtection, async (req, res) => {
   try {
     const data = loginSchema.parse(req.body);
     const user = await prisma.user.findUnique({ where: { email: data.email } });
 
-    if (!user || !user.isActive) {
+    if (!user?.isActive) {
       return res.status(401).json({ message: 'Credenciais inválidas.' });
     }
 
@@ -201,7 +201,7 @@ authRouter.post('/refresh', async (req, res) => {
     const payload = jwt.verify(refreshToken, env.refreshSecret) as { sub: string; email: string; role: string };
     const user = await prisma.user.findUnique({ where: { id: payload.sub } });
 
-    if (!user || !user.isActive) {
+    if (!user?.isActive) {
       return res.status(401).json({ message: 'Sessão inválida.' });
     }
 
