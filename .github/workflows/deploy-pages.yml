@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_BASE_PATH: /fitnizone
-      NEXT_PUBLIC_API_URL: https://fitnizone.onrender.com
+      NEXT_PUBLIC_API_URL: https://fitzone-backend.onrender.com
     steps:
       - name: Checkout
         uses: actions/checkout@v4

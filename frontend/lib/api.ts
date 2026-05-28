@@ -1,7 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://fitnizone.onrender.com';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://fitzone-backend.onrender.com';
 
 const api = axios.create({
   baseURL: API_URL,
