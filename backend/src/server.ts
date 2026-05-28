@@ -16,29 +16,14 @@ import progressRouter from './routes/progress';
 import uploadsRouter from './routes/uploads';
 import { env } from './lib/env';
 import { ensureSystemData } from './lib/bootstrap';
+import { prisma } from './lib/prisma';
 
 const app = express();
-const allowedOrigins = new Set([
-  env.frontendUrl,
-  'https://marcos-filho33.github.io',
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://localhost:3002',
-  'https://fitnizone.vercel.app',
-  'http://localhost:4000'
-]);
 
 app.use(helmet());
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.has(origin)) {
-        callback(null, origin || env.frontendUrl || 'https://marcos-filho33.github.io');
-        return;
-      }
-
-      callback(new Error('Not allowed by CORS'));
-    },
+    origin: true,
     credentials: true
   })
 );
@@ -60,8 +45,12 @@ if (!fs.existsSync(uploadDir)) {
 }
 app.use('/uploads', express.static(uploadDir));
 
+app.get('/', (_req, res) => {
+  res.json({ status: 'running', service: 'fitzone-backend', version: '1.0.0' });
+});
+
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'fitzone-backend' });
+  res.json({ status: 'ok', service: 'fitzone-backend', timestamp: new Date().toISOString() });
 });
 
 app.use('/auth', authRouter);
@@ -78,20 +67,42 @@ app.use((err: unknown, _req: express.Request, res: express.Response, _next: expr
   res.status(500).json({ message: 'Erro interno do servidor.' });
 });
 
-async function start() {
-  app.listen(env.port, () => {
-    console.log(`FITZONE backend rodando na porta ${env.port}`);
-  });
+const server = app.listen(env.port, () => {
+  console.log(`FITZONE backend rodando na porta ${env.port}`);
+});
+
+async function initializeDatabase() {
+  try {
+    await prisma.$connect();
+    console.log('Database connected');
+  } catch (error) {
+    console.warn('Warning: Database not available, some features will be disabled:', (error as Error).message);
+    return;
+  }
+
+  try {
+    await prisma.$executeRawUnsafe('SELECT 1');
+  } catch {
+    console.warn('Warning: Database query failed');
+    return;
+  }
 
   try {
     await ensureSystemData();
     console.log('System data initialized');
   } catch (error) {
-    console.error('Warning: Failed to initialize system data:', error);
+    console.warn('Warning: Failed to initialize system data:', (error as Error).message);
   }
 }
 
-start().catch((error) => {
-  console.error('Falha ao iniciar o FITZONE backend:', error);
-  process.exit(1);
+initializeDatabase();
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, shutting down...');
+  server.close(() => process.exit(0));
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT received, shutting down...');
+  server.close(() => process.exit(0));
 });

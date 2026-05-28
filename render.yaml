@@ -3,8 +3,8 @@ services:
     name: fitzone-backend
     env: node
     plan: starter
-    buildCommand: npm ci && npx prisma generate --schema=backend/prisma/schema.prisma && npm run build
-    startCommand: npx prisma migrate deploy --schema=backend/prisma/schema.prisma && npm run start
+    buildCommand: npm ci && npm run build --workspace backend
+    startCommand: npm run start --workspace backend
     envVars:
       - key: NODE_ENV
         value: production
