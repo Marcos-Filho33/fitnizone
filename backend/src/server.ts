@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import path from 'node:path';
 import fs from 'node:fs';
+import { execSync } from 'node:child_process';
 import authRouter from './routes/auth';
 import usersRouter from './routes/users';
 import workoutsRouter from './routes/workouts';
@@ -82,9 +83,21 @@ async function initializeDatabase() {
 
   try {
     await prisma.$executeRawUnsafe('SELECT 1');
+    console.log('Database is responsive');
   } catch {
     console.warn('Warning: Database query failed');
     return;
+  }
+
+  try {
+    console.log('Running database migrations...');
+    execSync('npx prisma db push --schema=prisma/schema.prisma --accept-data-loss', {
+      stdio: 'pipe',
+      timeout: 30000
+    });
+    console.log('Database schema synced');
+  } catch (error) {
+    console.warn('Warning: Failed to sync database schema:', (error as Error).message);
   }
 
   try {
