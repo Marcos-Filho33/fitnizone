@@ -33,12 +33,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build frontend for static export
-        working-directory: frontend
-        run: |
-          npx next build
-          mkdir -p out
-          touch out/.nojekyll
+      - name: Build frontend
+        run: npm run build --workspace frontend
+
+      - name: Create .nojekyll
+        run: touch frontend/out/.nojekyll
+
+      - name: Verify output
+        run: ls -la frontend/out/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
