@@ -27,17 +27,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build frontend for static export
+        working-directory: frontend
         run: |
-          npm run build --workspace frontend
-          mkdir -p frontend/out
-          touch frontend/out/.nojekyll
+          npx next build
+          mkdir -p out
+          touch out/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
