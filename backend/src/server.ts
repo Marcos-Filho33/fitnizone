@@ -79,11 +79,16 @@ app.use((err: unknown, _req: express.Request, res: express.Response, _next: expr
 });
 
 async function start() {
-  await ensureSystemData();
-
   app.listen(env.port, () => {
     console.log(`FITZONE backend rodando na porta ${env.port}`);
   });
+
+  try {
+    await ensureSystemData();
+    console.log('System data initialized');
+  } catch (error) {
+    console.error('Warning: Failed to initialize system data:', error);
+  }
 }
 
 start().catch((error) => {
