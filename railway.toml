@@ -2,4 +2,5 @@
 builder = "nixpacks"
 buildCommand = "cd backend && npm run build"
 startCommand = "cd backend && node dist/server.js"
-installCommand = "npm ci"
+# Run install inside the backend folder to avoid workspace flags in CI
+installCommand = "cd backend && npm ci"
