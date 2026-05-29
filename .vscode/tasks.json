@@ -348,7 +348,7 @@
 		{
 			"label": "Apply Prisma migrations",
 			"type": "shell",
-			"command": "npm run prisma:generate --workspace backend && npm run prisma:migrate --workspace backend",
+			"command": "npm --prefix backend run prisma:generate && npm --prefix backend run prisma:migrate",
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "verify"
@@ -428,7 +428,7 @@
 		{
 			"label": "Run Prisma migrate deploy",
 			"type": "shell",
-			"command": "npm run prisma:migrate --workspace backend",
+			"command": "npm --prefix backend run prisma:migrate",
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "verify"
