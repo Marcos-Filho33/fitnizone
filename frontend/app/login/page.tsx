@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -59,8 +61,16 @@ export default function LoginPage() {
   }, []);
 
   const onSubmit = async (values: FormValues) => {
-    await login(values.email, values.password);
-    router.push('/dashboard');
+    try {
+      await login(values.email, values.password);
+      router.push('/dashboard');
+    } catch (err: unknown) {
+      const message =
+        axios.isAxiosError(err) && err.response?.data?.message
+          ? err.response.data.message
+          : 'Erro ao fazer login';
+      toast.error(message);
+    }
   };
 
   return (

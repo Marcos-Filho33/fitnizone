@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import crypto from 'node:crypto';
 
 const SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS'];
+const isProduction = process.env.NODE_ENV === 'production';
 
 export function generateCsrfToken() {
   return crypto.randomBytes(32).toString('hex');
@@ -12,8 +13,8 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction) 
     const newCsrfToken = generateCsrfToken();
     res.cookie('csrfToken', newCsrfToken, {
       httpOnly: false,
-      secure: true,
-      sameSite: 'none',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'lax',
       path: '/'
     });
     res.setHeader('X-CSRF-Token', newCsrfToken);

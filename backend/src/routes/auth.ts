@@ -76,7 +76,7 @@ authRouter.get('/csrf', (_req, res) => {
   res.json({ csrfToken });
 });
 
-authRouter.post('/register', csrfProtection, async (req, res) => {
+authRouter.post('/register', async (req, res) => {
   try {
     const data = registerSchema.parse(req.body);
     const existing = await prisma.user.findUnique({ where: { email: data.email } });
@@ -115,7 +115,7 @@ authRouter.post('/register', csrfProtection, async (req, res) => {
   }
 });
 
-authRouter.post('/login', csrfProtection, async (req, res) => {
+authRouter.post('/login', async (req, res) => {
   try {
     const data = loginSchema.parse(req.body);
     const user = await prisma.user.findUnique({ where: { email: data.email } });
