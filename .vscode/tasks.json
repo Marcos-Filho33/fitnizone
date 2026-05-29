@@ -346,14 +346,6 @@
 			"group": "verify"
 		},
 		{
-			"label": "Apply Prisma migrations",
-			"type": "shell",
-			"command": "npm --prefix backend run prisma:generate && npm --prefix backend run prisma:migrate",
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "verify"
-		},
-		{
 			"label": "Reset Prisma client binary",
 			"type": "shell",
 			"command": "powershell -NoProfile -Command \"Remove-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\query_engine-windows.dll.node' -ErrorAction SilentlyContinue; Remove-Item -Force 'C:\\Users\\Pichau\\git\\sites venda\\node_modules\\.prisma\\client\\*.tmp*' -ErrorAction SilentlyContinue; npm --prefix backend run prisma:generate\"",
