@@ -7,10 +7,10 @@
   ],
   "scripts": {
     "dev": "concurrently -k \"npm run dev --workspace frontend\" \"npm run dev --workspace backend\"",
-    "build": "npm run build --workspace backend",
-    "build:all": "npm run build --workspace frontend && npm run build --workspace backend",
-    "start": "npm run start --workspace backend",
-    "seed": "npm run seed --workspace backend"
+    "build": "cd backend && npm run build",
+    "build:all": "cd frontend && npm run build && cd ../backend && npm run build",
+    "start": "cd backend && node dist/server.js",
+    "seed": "cd backend && npm run seed"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
