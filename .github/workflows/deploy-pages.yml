@@ -18,6 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      NEXT_PUBLIC_EXPORT: true
       NEXT_PUBLIC_BASE_PATH: /fitnizone
       NEXT_PUBLIC_API_URL: https://fitzone-backend-sx2i.onrender.com
     steps:

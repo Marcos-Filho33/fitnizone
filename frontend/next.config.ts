@@ -1,13 +1,16 @@
 import type { NextConfig } from 'next';
 
+const isExportMode = process.env.NEXT_PUBLIC_EXPORT === 'true';
 const repoBasePath = process.env.NEXT_PUBLIC_BASE_PATH || '/fitnizone';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: 'export',
   trailingSlash: true,
-  basePath: repoBasePath,
-  assetPrefix: `${repoBasePath}/`,
+  ...(isExportMode && {
+    output: 'export',
+    basePath: repoBasePath,
+    assetPrefix: `${repoBasePath}/`,
+  }),
   images: {
     unoptimized: true,
     remotePatterns: [
