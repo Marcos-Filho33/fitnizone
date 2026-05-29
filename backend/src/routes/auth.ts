@@ -33,27 +33,17 @@ const resetSchema = z.object({
 
 const isProduction = env.nodeEnv === 'production';
 
-const cookieOptions: {
-  httpOnly: boolean;
-  secure: boolean;
-  sameSite: 'none' | 'lax';
-  path: string;
-} = {
+const cookieOptions = {
   httpOnly: true,
-  secure: true,
-  sameSite: 'none',
+  secure: isProduction,
+  sameSite: (isProduction ? 'none' : 'lax') as 'none' | 'lax',
   path: '/'
 };
 
-const csrfCookieOptions: {
-  httpOnly: boolean;
-  secure: boolean;
-  sameSite: 'none' | 'lax';
-  path: string;
-} = {
+const csrfCookieOptions = {
   httpOnly: false,
-  secure: true,
-  sameSite: 'none',
+  secure: isProduction,
+  sameSite: (isProduction ? 'none' : 'lax') as 'none' | 'lax',
   path: '/'
 };
 

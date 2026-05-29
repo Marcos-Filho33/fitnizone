@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { BookOpen, Dumbbell, Home, Salad, LineChart, Shield, User, Users, LogOut } from 'lucide-react';
+import { BookOpen, Dumbbell, Home, Salad, LineChart, Shield, User, Users, LogOut, BarChart3 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 import { ThemeToggle } from './theme-toggle';
 import { Button } from './ui/button';
@@ -12,7 +12,7 @@ const navItems = [
   { href: '/workouts', label: 'Treinos', icon: Dumbbell },
   { href: '/exercises', label: 'Exercícios', icon: BookOpen },
   { href: '/diets', label: 'Dietas', icon: Salad },
-  { href: '/foods', label: 'Alimentos', icon: LineChart },
+  { href: '/foods', label: 'Alimentos', icon: BarChart3 },
   { href: '/progress', label: 'Progresso', icon: LineChart }
 ];
 

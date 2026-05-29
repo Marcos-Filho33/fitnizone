@@ -57,7 +57,7 @@ export default function DashboardPage() {
   }, [currentDiet]);
 
   const latestWeight = progress[0]?.weight || measurements[0]?.weight || 0;
-  const chartData = [...progress].reverse().slice(0, 6).map((entry) => ({
+  const chartData = [...progress].slice(0, 6).reverse().map((entry) => ({
     label: new Date(entry.date).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }),
     weight: Number(entry.weight)
   }));

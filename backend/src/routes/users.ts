@@ -137,6 +137,11 @@ usersRouter.delete('/:id', authenticateToken, requireRole(['ADMIN']), async (req
     return res.status(400).json({ message: 'ID inválido.' });
   }
 
+  const existing = await prisma.user.findUnique({ where: { id } });
+  if (!existing) {
+    return res.status(404).json({ message: 'Usuário não encontrado.' });
+  }
+
   await prisma.user.delete({ where: { id } });
   res.json({ message: 'Usuário removido com sucesso.' });
 });

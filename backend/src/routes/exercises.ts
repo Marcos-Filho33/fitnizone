@@ -131,6 +131,11 @@ exercisesRouter.delete('/:id', authenticateToken, requireRole(['ADMIN']), async 
     return res.status(400).json({ message: 'ID inválido.' });
   }
 
+  const existing = await prisma.exercise.findUnique({ where: { id } });
+  if (!existing) {
+    return res.status(404).json({ message: 'Exercício não encontrado.' });
+  }
+
   await prisma.exercise.delete({ where: { id } });
   res.json({ message: 'Exercício removido.' });
 });
