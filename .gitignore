@@ -12,3 +12,5 @@ backend/uploads
 frontend/.next
 frontend/.turbo
 frontend/.vercel
+*.log
+frontend/tsconfig.tsbuildinfo

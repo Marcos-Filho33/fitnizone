@@ -30,7 +30,7 @@ cp frontend/.env.example frontend/.env.local
 
 ```bash
 docker compose up -d postgres
-npm run seed --workspace backend
+npm --prefix backend run seed
 ```
 
 5. Rode em desenvolvimento
