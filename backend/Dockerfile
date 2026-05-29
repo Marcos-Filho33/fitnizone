@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY backend/package*.json ./backend/
 COPY backend/prisma ./backend/prisma/
-RUN npm ci --prefix backend
+RUN npm install --prefix backend
 RUN npm --prefix backend run prisma:generate
 COPY backend/ ./backend/
 WORKDIR /app/backend
