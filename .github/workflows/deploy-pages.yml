@@ -35,7 +35,7 @@ jobs:
         run: npm ci
 
       - name: Build frontend
-        run: npm run build --workspace frontend
+        run: cd frontend && npm run build
 
       - name: Create .nojekyll
         run: touch frontend/out/.nojekyll

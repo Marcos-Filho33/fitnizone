@@ -1,12 +1,8 @@
 {
   "name": "fitzone-system",
   "private": true,
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
   "scripts": {
-    "dev": "concurrently -k \"npm run dev --workspace frontend\" \"npm run dev --workspace backend\"",
+    "dev": "concurrently -k \"cd frontend && npm run dev\" \"cd backend && npm run dev\"",
     "build": "cd backend && npm run build",
     "build:all": "cd frontend && npm run build && cd ../backend && npm run build",
     "start": "cd backend && node dist/server.js",
